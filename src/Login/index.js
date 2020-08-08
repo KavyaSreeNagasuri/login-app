@@ -48,15 +48,13 @@ function LoginPage() {
         }
     }
 
-    console.log("index-index", users, loginStatus);
-
     return (
         <React.Fragment>
             {(error) && showAlert &&
                 <Col lgOffset={8} className="modal-class">
                     <Modal.Dialog>
                         <Modal.Header>
-                            <Modal.Title>{error}</Modal.Title>
+                            <Modal.Title className="title-width">{error}</Modal.Title>
                         </Modal.Header>
                     </Modal.Dialog>
                 </Col>
