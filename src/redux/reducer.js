@@ -10,7 +10,13 @@ const loginData = {
 export let LoginReducer = (state = loginData, action) => {
     switch (action.type) {
         case ADD_USER:
-            return state.concat(action.payload);
+            const userList = state;
+            userList.push(action.payload);
+            return {
+                ...state,
+                userList,
+                // loginStatus: true,
+            }
         case CHECK_USER:
             const temp = {...state};
             const { username, password } = action.payload;

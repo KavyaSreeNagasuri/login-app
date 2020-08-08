@@ -1,31 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { isEmpty } from 'lodash';
-import { InputGroup, FormControl, Button, Modal } from 'react-bootstrap';
+import { InputGroup, FormControl, Button } from 'react-bootstrap';
 import { Row, Col } from 'react-flexbox-grid';
 import './login-form.scss';
+import { userData } from '../constants';
 
 function LoginForm(props) {
-    const [data, setData] = useState({
-        username: {
-            value: "",
-            error: "*This field is required",
-            touched: false,
-        },
-        password: {
-            value: "",
-            error: "*This field is required",
-            touched: false,
-        }
-    })
+    const [data, setData] = useState(userData);
 
-    const [showAlert, setAlert] = useState(true);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setAlert(false)
-        }, 5000);
-        return () => clearTimeout(timer);
-    });
+    const [action, setAction] = useState("login");
 
     const getError = (type, value = data[type].value) => {
         let error = "";
@@ -50,11 +33,26 @@ function LoginForm(props) {
         })
     }
 
+    useEffect(() => {
+        if (props.errorMsg === "Account Created Successfully") {
+            setData(userData);
+            setAction("login");
+        }
+    }, [props.errorMsg]);
+
     const onSubmit = () => {
         getError("username");
         getError("password");
-        setAlert(true);
-        props.onSubmit(data.username.value, data.password.value)
+        props.onSubmit(data.username.value, data.password.value, action)
+    }
+
+    const onChangeAction = () => {
+        if (action === "create") {
+            setAction("login");
+        } else {
+            setAction("create");
+        }
+        setData(userData);
     }
 
     const validateFields = () => {
@@ -117,16 +115,15 @@ function LoginForm(props) {
                     onClick={onSubmit}
                     block
                 >
-                    Login
+                    {action === "create" ? "Create" : "Login"}
+                </Button>
+                <Button
+                    variant="link"
+                    onClick={onChangeAction}
+                >
+                    {action === "create" ? "Already have an account?" : "Create new account?"}
                 </Button>
             </Col>
-            {!isEmpty(props.errorMsg) && showAlert &&
-                <Modal.Dialog>
-                    <Modal.Header>
-                        <Modal.Title>{props.errorMsg}</Modal.Title>
-                    </Modal.Header>
-                </Modal.Dialog>
-            }
         </Row>
     );
 }
