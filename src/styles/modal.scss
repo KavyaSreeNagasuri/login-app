@@ -1,0 +1,101 @@
+@import "animations";
+@import "mixins/make-animation";
+
+.dialog {
+    @include make-animation($name: slideDown, $duration: 0.35s);
+    padding: 32px 40px;
+    background: #ffffff;
+    z-index: 1001;
+    overflow: hidden;
+    outline: 0;
+    box-sizing: border-box;
+    min-height: 250px;
+    max-width: 850px;
+    width: 90%;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translate(0);
+}
+.submit-modal {
+    .header {
+        font-family: "Georgia", "Times New Roman", "Times", "serif";
+        font-weight: bold;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 20px 0px;
+    }
+    min-height: 200px;
+    .buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 25px;
+        .btn {
+            margin-left: 20px;
+        }
+        .loading {
+            display: none;
+            margin-right: 10px;
+        }
+        .loading-visible {
+            visibility: visible;
+            margin-right: 10px;
+        }
+    }
+}
+
+.create-modal {
+    .header {
+        font-family: "Georgia", "Times New Roman", "Times", "serif";
+        font-weight: bold;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 20px 10px 10px;
+    }
+    .group {
+        margin: 15px 0;
+        width: 100%;
+        position: relative;
+    }
+    .label {
+        font-weight: bold;
+        font-size: 15px;
+        line-height: 1.14;
+        font-family: "Roboto", "Arial", sans-serif;
+        vertical-align: top;
+        margin-top: 9px;
+    }
+    .dropdown {
+        display: inline-block;
+        padding: 0;
+    }
+    .textarea-label {
+        vertical-align: top;
+        margin-top: 15px;
+    }
+    .field {
+        display: inline-block;
+    }
+    .buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 50px;
+        .btn {
+            margin-left: 20px;
+            .loading {
+                display: none;
+                margin-right: 10px;
+            }
+            .loading-visible {
+                visibility: visible;
+                margin-right: 10px;
+            }
+        }
+    }
+    .error-msg {
+        padding: 0;
+        font-size: 12px;
+        color: red;
+        position: absolute;
+    }
+}

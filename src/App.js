@@ -1,14 +1,22 @@
 import React from 'react';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import './App.css';
+import LoginPage from './Login/index';
+import Dashboard from './Login/dashboard';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        LOGIN APP
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+
+    return (
+      <div className="App">
+        <Switch>
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Redirect from="/" to="/login" />
+        </Switch>
+      </div>
+    )
+  }
 }
 
-export default App;
+export default withRouter(App);

@@ -1,0 +1,14 @@
+@mixin make-animation(
+    $duration: 0.25s,
+    $function: ease,
+    $name: fadeIn,
+    $visibility: visible
+) {
+    animation-duration: $duration;
+    -webkit-animation-duration: $duration;
+    animation-timing-function: $function;
+    -webkit-animation-timing-function: $function;
+    -webkit-animation-name: $name;
+    animation-name: $name;
+    visibility: $visibility;
+}
